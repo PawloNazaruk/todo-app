@@ -1,6 +1,3 @@
-
-# Todo List Application made with FastAPI
-
 from fastapi import FastAPI
 import uvicorn
 

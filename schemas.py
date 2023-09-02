@@ -1,6 +1,3 @@
-
-# Schemas of Tasks objects used by TODO app
-
 from datetime import datetime
 from typing import List
 from pydantic import BaseModel
@@ -12,13 +9,11 @@ class TaskSchema(BaseModel):
     id: int = None
     title: str
     content: str = None
-    priority: Priority
+    priority: str = None
     category: str = None
-    completed: str = None  # czy lepiej 0?
+    completed: bool = None  # czy lepiej 0?
     createdAt: datetime
     updatedAt: datetime
-    finishUntil: datetime
-    completedAt: datetime
 
     class Config:
         orm_mode = True
