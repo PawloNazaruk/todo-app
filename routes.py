@@ -49,7 +49,7 @@ async def delete_task_by(task_id: int, response: Response, db: Session = Depends
         return {"task": task}
 
 
-@router.patch("/{task_id}", status_code=status.HTTP_202_ACCEPTED)
+@router.put("/{task_id}", status_code=status.HTTP_202_ACCEPTED)
 async def update_task(task_id: int, payload: schemas.TaskSchema, response: Response, db: Session = Depends(get_db)):
     task_query = db.query(models.Task).filter(models.Task.id == task_id)
     task = task_query.first()
@@ -57,6 +57,5 @@ async def update_task(task_id: int, payload: schemas.TaskSchema, response: Respo
         response.status_code = status.HTTP_404_NOT_FOUND
         return HTTPException(detail=f"No task with this id: {task_id} found.")
     else:
-
         db.commit()
         return {"task": task}
